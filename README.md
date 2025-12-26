@@ -1,6 +1,10 @@
 # Veritas - Real-Time Fact Check Agent
 
+
 ![Veritas Demo](https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=2070&auto=format&fit=crop)
+
+### [🔴 Live Demo](https://veritas-ai-eta.vercel.app/)
+
 
 Veritas is a high-precision, AI-powered fact-checking tool designed to verify news headlines and claims in real-time. Unlike standard AI chatbots that may hallucinate or cite unreliable sources, Veritas enforces a **strict RAG (Retrieval-Augmented Generation) architecture** that only validates claims against a curated whitelist of trusted global news agencies (e.g., Reuters, AP, BBC, Bloomberg).
 
@@ -32,8 +36,8 @@ Veritas is a high-precision, AI-powered fact-checking tool designed to verify ne
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/veritas-agent.git
-cd veritas-agent
+git clone https://github.com/the-AmanS/Veritas.git
+cd Veritas
 ```
 
 ### 2. Install dependencies

@@ -1,0 +1,5 @@
+{
+  "name": "Veritas - Real-Time Fact Check Agent",
+  "description": "A real-time fact-checking system utilizing RAG architecture to verify claims against a curated whitelist of trusted global news sources using Google Gemini and Search.",
+  "requestFramePermissions": []
+}

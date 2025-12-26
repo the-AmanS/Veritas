@@ -1,34 +1,67 @@
-# Veritas - Real-Time Fact Check Agent
+<div align="center">
+  
+  ![Veritas Banner](https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=2070&auto=format&fit=crop)
 
+  # 🛡️ Veritas
+  ### Real-Time AI Fact-Checking Agent
 
-![Veritas Demo](https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=2070&auto=format&fit=crop)
+  <p align="center">
+    <a href="https://veritas-ai-eta.vercel.app/">
+      <img src="https://img.shields.io/badge/🔴_Live_Demo-Visit_App-red?style=for-the-badge&logo=vercel" alt="Live Demo" />
+    </a>
+  </p>
 
-### [🔴 Live Demo](https://veritas-ai-eta.vercel.app/)
+  <p align="center">
+    <img src="https://img.shields.io/badge/React-19-blue?style=flat-square&logo=react" alt="React" />
+    <img src="https://img.shields.io/badge/Vite-6.0-purple?style=flat-square&logo=vite" alt="Vite" />
+    <img src="https://img.shields.io/badge/TypeScript-5.0-blue?style=flat-square&logo=typescript" alt="TypeScript" />
+    <img src="https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=flat-square&logo=tailwind-css" alt="Tailwind CSS" />
+    <img src="https://img.shields.io/badge/Gemini_AI-2.5_Flash-4285F4?style=flat-square&logo=google" alt="Gemini AI" />
+  </p>
 
+  <br />
+</div>
 
-Veritas is a high-precision, AI-powered fact-checking tool designed to verify news headlines and claims in real-time. Unlike standard AI chatbots that may hallucinate or cite unreliable sources, Veritas enforces a **strict RAG (Retrieval-Augmented Generation) architecture** that only validates claims against a curated whitelist of trusted global news agencies (e.g., Reuters, AP, BBC, Bloomberg).
+---
+
+### 🧐 What is Veritas?
+
+**Veritas** is a high-precision, AI-powered fact-checking tool designed to verify news headlines and claims in real-time. 
+
+> Unlike standard AI chatbots that may hallucinate or cite unreliable sources, Veritas enforces a **strict RAG (Retrieval-Augmented Generation) architecture** that only validates claims against a curated whitelist of trusted global news agencies.
+
+---
 
 ## 🚀 Key Features
 
-*   **Real-Time API Grounding**: Uses **Google Gemini 2.5 Flash** with integrated Google Search tools to fetch live verified data—no information cutoffs.
-*   **Strict Trusted Whitelist**: The core engine programmatically filters out all sources *not* on the `TRUSTED_DOMAINS` list. If a claim is only found on blogs or social media, it returns "Unverified".
-*   **Transparent Verdicts**: Delivers clear outcomes:
-    *   ✅ **Verified**: Confirmed by multiple trusted sources.
-    *   ❌ **False**: Explicitly debunked by trusted sources.
-    *   ⚠️ **Misleading**: Context is missing or details are twisted.
-    *   ❓ **Unverified**: No credible evidence found.
-*   **Source Sentiment Analysis**: Analyzes each article to determine if it *Supports*, *Disputes*, or is *Neutral* regarding the user's claim.
-*   **Developing Story Detection**: Automatically flags breaking news where facts may still be evolving.
+| Feature | Description |
+| :--- | :--- |
+| ⚡ **Real-Time Grounding** | Uses **Google Gemini 2.5 Flash** + **Google Search** to fetch live data (no knowledge cutoff). |
+| 🔒 **Strict Whitelist** | The core engine **programmatically filters** out sources not on the trusted list (e.g., blogs, social media). |
+| 📊 **Transparent Verdicts** | Delivers clear outcomes: <br>✅ **Verified** <br>❌ **False** <br>⚠️ **Misleading** <br>❓ **Unverified** |
+| 🧠 **Source Sentiment** | Analyzes each article to determine if it *Supports*, *Disputes*, or is *Neutral*. |
+| 🚨 **Breaking News** | Automatically flags developing stories where facts may still be evolving. |
+
+---
 
 ## 🛠️ Tech Stack
 
-*   **Frontend Framework**: React 19 + TypeScript + Vite
-*   **Styling**: Tailwind CSS (Glassmorphism design system)
-*   **AI Engine**: Google Gemini API (`gemini-2.5-flash`)
-*   **Search**: Google Search Grounding (via Gemini Tools)
-*   **Icons**: Lucide React
+<div align="center">
+
+| Frontend | AI & Logic | Styling |
+| :---: | :---: | :---: |
+| **React 19** | **Google Gemini 2.5 Flash** | **Tailwind CSS** |
+| **TypeScript** | **Google Search Grounding** | **Lucide Icons** |
+| **Vite** | **RAG Architecture** | **Glassmorphism UI** |
+
+</div>
+
+---
 
 ## 📦 Installation & Setup
+
+<details>
+<summary>Click to expand setup instructions</summary>
 
 ### Prerequisites
 *   Node.js (v18 or higher)
@@ -57,30 +90,54 @@ VITE_GEMINI_API_KEY=your_actual_api_key_here
 npm run dev
 ```
 
+</details>
+
+---
+
 ## 🧠 How It Works
 
-1.  **User Input**: The user enters a claim (e.g., "The Eiffel Tower is on fire").
-2.  **Ambiguity Check**: Client-side logic checks for vague inputs (< 5 chars).
-3.  **AI Investigation**:
-    *   The app sends the claim to Gemini 2.5 Flash.
-    *   Gemini executes a **Google Search** to find relevant articles.
-4.  **Strict Filtering**:
-    *   The AI is prompted to strictly adhere to the `TRUSTED_DOMAINS` list.
-    *   **Post-Processing Safety Use**: The application code *additionally* filters the returned sources. If a source URL does not match the whitelist, it is discarded.
-5.  **Verdict Generation**: Based on the *remaining* trusted sources, the AI matches the consensus to a verdict type and generates a confidence score.
+```mermaid
+graph TD;
+    A[User Input] -->|Ambiguity Check| B(Gemini 2.5 Flash);
+    B -->|Google Search| C{Search Results};
+    C -->|Strict Filtering| D[Trusted Whitelist];
+    D -->|Analysis| E[Sentiment & Verdict];
+    E --> F[Final Output];
+```
 
-## 🔒 Trusted Sources List
+1.  **User Input**: User enters a claim.
+2.  **Ambiguity Check**: Client-side logic checks for vague inputs.
+3.  **AI Investigation**: Gemini executes a **Google Search**.
+4.  **Strict Filtering**: Sources NOT in `TRUSTED_DOMAINS` are discarded.
+5.  **Verdict Generation**: AI matches consensus to a verdict type.
 
-Veritas currently supports verifiable cross-referencing from:
-*   **Global Wires**: Reuters, AP News, Bloomberg, AFP
-*   **US Major**: NY Times, Washington Post, WSJ, NPR, PBS, USA Today, CNN
-*   **International**: BBC, The Guardian, DW, France24, Al Jazeera, Nikkei Asia
-*   **Fact Checkers**: Snopes, PolitiFact, FactCheck.org
-*   *(See `constants.ts` for the full list)*
+---
+
+## 🔒 Trusted Sources Whitelist
+
+<div align="center">
+  
+| Region | Sources |
+| :--- | :--- |
+| 🌍 **Global Wires** | Reuters, AP News, Bloomberg, AFP |
+| 🇺🇸 **US Major** | NY Times, Washington Post, WSJ, NPR, PBS, USA Today, CNN |
+| 🇬🇧 **International** | BBC, The Guardian, DW, France24, Al Jazeera, Nikkei Asia |
+| 🔍 **Fact Checkers** | Snopes, PolitiFact, FactCheck.org |
+
+</div>
+
+*(See `constants.ts` for the full list)*
+
+---
 
 ## ⚠️ Disclaimer
 
-Veritas is an educational project designed to demonstrate the potential of AI in fighting misinformation. While it uses strict sourcing protocols, no AI is infallible. Always verify critical information from primary sources directly.
+> Veritas is an educational project/prototype designed to demonstrate the potential of AI in fighting misinformation. While it uses strict sourcing protocols, no AI is infallible. **Always verify critical information from primary sources directly.**
 
 ---
+
+<div align="center">
+
 Made with ❤️ by [Aman Singh](https://github.com/the-AmanS)
+
+</div>

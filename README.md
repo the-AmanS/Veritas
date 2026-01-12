@@ -4,7 +4,6 @@ Veritas is a high-precision, real-time fact-checking agent designed to combat mi
 
 Powered by **Groq** (Llama 3 70b) for ultra-low latency analysis, Veritas categorizes claims with granular verdicts and provides transparent source citations.
 
-![Veritas Demo](./public/vite.svg)
 
 ## 🚀 Key Features
 

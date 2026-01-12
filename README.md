@@ -1,143 +1,99 @@
-<div align="center">
-  
-  ![Veritas Banner](https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=2070&auto=format&fit=crop)
+# Veritas - Real-Time Fact Check Agent 🛡️
 
-  # 🛡️ Veritas
-  ### Real-Time AI Fact-Checking Agent
+Veritas is a high-precision, real-time fact-checking agent designed to combat misinformation. It leverages a **RAG (Retrieval-Augmented Generation)** inspired architecture to cross-reference claims against a strict whitelist of 40+ trusted global news agencies.
 
-  <p align="center">
-    <a href="https://veritas-ai-eta.vercel.app/">
-      <img src="https://img.shields.io/badge/🔴_Live_Demo-Visit_App-red?style=for-the-badge&logo=vercel" alt="Live Demo" />
-    </a>
-  </p>
+Powered by **Groq** (Llama 3 70b) for ultra-low latency analysis, Veritas categorizes claims with granular verdicts and provides transparent source citations.
 
-  <p align="center">
-    <img src="https://img.shields.io/badge/React-19-blue?style=flat-square&logo=react" alt="React" />
-    <img src="https://img.shields.io/badge/Vite-6.0-purple?style=flat-square&logo=vite" alt="Vite" />
-    <img src="https://img.shields.io/badge/TypeScript-5.0-blue?style=flat-square&logo=typescript" alt="TypeScript" />
-    <img src="https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=flat-square&logo=tailwind-css" alt="Tailwind CSS" />
-    <img src="https://img.shields.io/badge/Gemini_AI-2.5_Flash-4285F4?style=flat-square&logo=google" alt="Gemini AI" />
-  </p>
-
-  <br />
-</div>
-
----
-
-### 🧐 What is Veritas?
-
-**Veritas** is a high-precision, AI-powered fact-checking tool designed to verify news headlines and claims in real-time. 
-
-> Unlike standard AI chatbots that may hallucinate or cite unreliable sources, Veritas enforces a **strict RAG (Retrieval-Augmented Generation) architecture** that only validates claims against a curated whitelist of trusted global news agencies.
-
----
+![Veritas Demo](./public/vite.svg)
 
 ## 🚀 Key Features
 
-| Feature | Description |
-| :--- | :--- |
-| ⚡ **Real-Time Grounding** | Uses **Google Gemini 2.5 Flash** + **Google Search** to fetch live data (no knowledge cutoff). |
-| 🔒 **Strict Whitelist** | The core engine **programmatically filters** out sources not on the trusted list (e.g., blogs, social media). |
-| 📊 **Transparent Verdicts** | Delivers clear outcomes: <br>✅ **Verified** <br>❌ **False** <br>⚠️ **Misleading** <br>❓ **Unverified** |
-| 🧠 **Source Sentiment** | Analyzes each article to determine if it *Supports*, *Disputes*, or is *Neutral*. |
-| 🚨 **Breaking News** | Automatically flags developing stories where facts may still be evolving. |
-
----
+-   **Real-Time Verification**: Instant analysis of news headlines and claims.
+-   **Trusted Source Whitelist**: Citations are strictly limited to verified outlets like *Reuters, AP, Bloomberg, BBC, NPR*, etc., preventing hallucinated or low-quality sources.
+-   **Granular Verdicts**: Claims are classified as:
+    -   ✅ **Verified**: 100% supported by evidence.
+    -   ❌ **False**: Explicitly debunked.
+    -   ⚠️ **Misleading**: Context is missing or details are wrong.
+    -   ❓ **Unverified**: No sufficient trusted evidence found.
+-   **Transparent Logic**: Every verdict includes a logic explanation and a list of sources with sentiment analysis (Support/Dispute/Neutral).
 
 ## 🛠️ Tech Stack
 
-<div align="center">
+### Frontend
+-   **React** (v19) + **Vite**
+-   **TypeScript**
+-   **Tailwind CSS** (Styling)
+-   **Lucide React** (Icons)
 
-| Frontend | AI & Logic | Styling |
-| :---: | :---: | :---: |
-| **React 19** | **Google Gemini 2.5 Flash** | **Tailwind CSS** |
-| **TypeScript** | **Google Search Grounding** | **Lucide Icons** |
-| **Vite** | **RAG Architecture** | **Glassmorphism UI** |
+### Backend
+-   **Node.js** + **Express**
+-   **Groq SDK** (AI Inference)
+-   **Dotenv**
 
-</div>
-
----
-
-## 📦 Installation & Setup
-
-<details>
-<summary>Click to expand setup instructions</summary>
+## ⚡ Quick Start
 
 ### Prerequisites
-*   Node.js (v18 or higher)
-*   A Google AI Studio API Key (Gemini)
+-   Node.js (v18+)
+-   A [Groq API Key](https://console.groq.com/)
 
-### 1. Clone the repository
-```bash
-git clone https://github.com/the-AmanS/Veritas.git
-cd Veritas
+### Installation
+
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/yourusername/veritas.git
+    cd veritas
+    ```
+
+2.  **Install dependencies**
+    ```bash
+    npm install
+    ```
+
+3.  **Configure Environment**
+    Create a `.env` file in the root directory (see `.env.example`):
+    ```env
+    GROQ_API_KEY=your_groq_api_key_here
+    ```
+
+4.  **Run the Application**
+    Start both the backend API and frontend dev server concurrently:
+    ```bash
+    npm run dev:full
+    ```
+    -   Frontend: `http://localhost:3000`
+    -   Backend: `http://localhost:3001`
+
+## 📡 API Documentation
+
+### `POST /api/fact-check`
+
+Analyzes a text claim and returns a structured verification object.
+
+**Request Body:**
+```json
+{
+  "claim": "Aliens have officially landed in New York City."
+}
 ```
 
-### 2. Install dependencies
-```bash
-npm install
+**Response:**
+```json
+{
+  "verdict": "FALSE",
+  "confidenceScore": 98,
+  "summary": "No credible news outlets have reported this event.",
+  "keyFacts": ["NYPD confirms no alien activity.", "NASA radar shows no anomalies."],
+  "isDeveloping": false,
+  "logicExplanation": "No Evidence Found",
+  "sources": []
+}
 ```
 
-### 3. Configure Environment Variables
-Create a `.env.local` file in the root directory:
-```env
-# Get this key from https://aistudio.google.com/
-VITE_GEMINI_API_KEY=your_actual_api_key_here
-```
+## 🛡️ Trusted Sources Architecture
 
-### 4. Run the development server
-```bash
-npm run dev
-```
+Veritas enforces a strict "allowlist" policy. The AI model is instructed to strictly reference domains from our curated list of high-integrity journalism, including:
+-   **Wires**: Reuters, AP, AFP
+-   **US**: NYT, WaPo, WSJ, NPR
+-   **UK/EU**: BBC, Guardian, DW, France24
+-   **Asia**: Nikkei, CNA, The Hindu
 
-</details>
-
----
-
-## 🧠 How It Works
-
-```mermaid
-graph TD;
-    A[User Input] -->|Ambiguity Check| B(Gemini 2.5 Flash);
-    B -->|Google Search| C{Search Results};
-    C -->|Strict Filtering| D[Trusted Whitelist];
-    D -->|Analysis| E[Sentiment & Verdict];
-    E --> F[Final Output];
-```
-
-1.  **User Input**: User enters a claim.
-2.  **Ambiguity Check**: Client-side logic checks for vague inputs.
-3.  **AI Investigation**: Gemini executes a **Google Search**.
-4.  **Strict Filtering**: Sources NOT in `TRUSTED_DOMAINS` are discarded.
-5.  **Verdict Generation**: AI matches consensus to a verdict type.
-
----
-
-## 🔒 Trusted Sources Whitelist
-
-<div align="center">
-  
-| Region | Sources |
-| :--- | :--- |
-| 🌍 **Global Wires** | Reuters, AP News, Bloomberg, AFP |
-| 🇺🇸 **US Major** | NY Times, Washington Post, WSJ, NPR, PBS, USA Today, CNN |
-| 🇬🇧 **International** | BBC, The Guardian, DW, France24, Al Jazeera, Nikkei Asia |
-| 🔍 **Fact Checkers** | Snopes, PolitiFact, FactCheck.org |
-
-</div>
-
-*(See `constants.ts` for the full list)*
-
----
-
-## ⚠️ Disclaimer
-
-> Veritas is an educational project/prototype designed to demonstrate the potential of AI in fighting misinformation. While it uses strict sourcing protocols, no AI is infallible. **Always verify critical information from primary sources directly.**
-
----
-
-<div align="center">
-
-Made with ❤️ by [Aman Singh](https://github.com/the-AmanS)
-
-</div>

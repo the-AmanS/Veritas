@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, ShieldCheck, Cpu, Database, User, Instagram } from 'lucide-react';
+import { X, ShieldCheck, Cpu, User, Instagram } from 'lucide-react';
 
 interface AboutModalProps {
   isOpen: boolean;
@@ -20,7 +20,7 @@ const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
             </div>
             <h2 className="text-lg sm:text-xl font-bold text-gray-900">About Veritas</h2>
           </div>
-          <button 
+          <button
             onClick={onClose}
             className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-full transition-colors"
           >
@@ -30,13 +30,13 @@ const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
 
         {/* Content */}
         <div className="p-5 sm:p-8 space-y-8">
-          
+
           {/* Mission */}
           <section>
             <h3 className="text-lg font-serif font-bold text-gray-900 mb-3">Our Mission</h3>
             <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
-              In an era of deepfakes and viral misinformation, Veritas serves as a digital shield. 
-              We don't just search the web; we filter reality through a lens of credibility, 
+              In an era of deepfakes and viral misinformation, Veritas serves as a digital shield.
+              We don't just search the web; we filter reality through a lens of credibility,
               ensuring that the information you consume is verified by the world's most trusted institutions.
             </p>
           </section>
@@ -92,7 +92,7 @@ const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
                 <h4 className="font-bold text-gray-900 text-lg">Aman Singh</h4>
                 <p className="text-blue-600 font-medium">Third Year BSc IT Student</p>
                 <p className="text-xs text-gray-500 mt-1">Passionate about AI Safety & Information Integrity</p>
-                
+
                 <div className="flex flex-wrap gap-3 mt-3">
                   <a href="https://www.instagram.com/amman._11/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs font-bold text-pink-600 bg-pink-50 px-3 py-1.5 rounded-full hover:bg-pink-100 transition-colors border border-pink-100">
                     <Instagram size={14} />
@@ -108,10 +108,10 @@ const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
           </section>
 
         </div>
-        
+
         {/* Footer */}
         <div className="p-6 bg-gray-50 border-t border-gray-100 text-center">
-            <p className="text-xs text-gray-400">© 2025 Veritas Project. All verification logic powered by Google Gemini.</p>
+          <p className="text-xs text-gray-400">© 2025 Veritas Project. All verification logic powered by Google Gemini.</p>
         </div>
       </div>
     </div>
